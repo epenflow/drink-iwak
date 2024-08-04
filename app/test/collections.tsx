@@ -66,6 +66,7 @@ export const Collections = () => {
 			top: -200,
 			rotate: 360,
 			xPercent: -100,
+			scale: 0.25,
 			duration: 1.5,
 			ease: 'sine.in',
 		});
