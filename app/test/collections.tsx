@@ -68,7 +68,7 @@ export const Collections = () => {
 			ease: 'sine.in',
 		});
 		textTriggers.forEach((textTrigger) => {
-			tl.from(textTrigger, {
+			tl.to(textTrigger, {
 				backgroundPositionX: 0,
 			});
 		});

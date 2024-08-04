@@ -14,13 +14,13 @@ export const OurStory = () => {
 			scrollTrigger: {
 				pin: containerRef.current,
 				start: 'top top',
-				end: 'bottom+=200% top',
+				end: 'bottom+=300vh top',
 				scrub: 1,
 			},
 		});
 		tl.from(imageRef.current, {
-			y: '100vh',
-			ease: 'sine.in',
+			bottom: -200,
+			ease: 'sine.inOut',
 			autoAlpha: 0,
 		});
 		const paragraphs: React.ElementRef<'p'>[] =
@@ -35,17 +35,26 @@ export const OurStory = () => {
 			},
 			'+=2',
 		);
-		paragraphs.forEach((paragraph) => {
+		paragraphs.forEach((paragraph, index) => {
 			tl.from(paragraph, {
 				yPercent: 50,
 				autoAlpha: 0,
+				stagger: 0.5 * (index + 1),
+				duration: 0.5 * (index + 1),
+				ease: 'sine.in',
 			});
 		});
 		textMarkers.forEach((marker, index) => {
-			tl.to(marker, {
-				backgroundSize: '100%',
-				ease: 'sine.in',
-			});
+			tl.to(
+				marker,
+				{
+					backgroundSize: '100%',
+					ease: 'sine.in',
+					duration: 0,
+					stagger: 0.5 * (index + 1),
+				},
+				`+=${index + 1}`,
+			);
 		});
 	}, [containerRef]);
 	return (
