@@ -57,9 +57,8 @@ export const Collections = () => {
 		});
 		const bottleTrigger: HTMLImageElement[] =
 			gsap.utils.toArray('.bottle-trigger');
-		const textTrigger: HTMLElement[] = gsap.utils.toArray(
-			'.text-collection-trigger',
-		);
+		const textTriggers: HTMLElement[] =
+			gsap.utils.toArray('.collection-text');
 
 		tl.from(bottleTrigger, {
 			yPercent: -200,
@@ -70,9 +69,10 @@ export const Collections = () => {
 			duration: 1.5,
 			ease: 'sine.in',
 		});
-		tl.from(textTrigger, {
-			autoAlpha: 0,
-			ease: 'sine.in',
+		textTriggers.forEach((textTrigger) => {
+			tl.from(textTrigger, {
+				backgroundPositionX: 0,
+			});
 		});
 		elements.forEach((element, index) => {
 			tl.to(element, {
@@ -106,7 +106,7 @@ export const Collections = () => {
 						<h1
 							className={cn(
 								'text-5xl font-medium mt-5',
-								index === 0 && 'text-collection-trigger',
+								index === 0 && 'collection-text',
 							)}>
 							{label}
 						</h1>
@@ -124,7 +124,7 @@ export const Collections = () => {
 						<span
 							className={cn(
 								'text-center w-full lg:w-1/2 px-5 h-28 line-clamp-3 lg:line-clamp-2 mb-5',
-								index === 0 && 'text-collection-trigger',
+								index === 0 && 'collection-text',
 							)}>
 							{text}
 						</span>
