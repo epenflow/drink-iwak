@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { IwakFont } from '@/app/public/fonts/fonts';
+import { WrapperProvider } from '@/lib/wrapper-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,7 +22,7 @@ export default function RootLayout({
 			<body
 				suppressHydrationWarning
 				className={cn(`${inter.className} ${IwakFont.variable}`)}>
-				{children}
+				<WrapperProvider>{children}</WrapperProvider>
 			</body>
 		</html>
 	);

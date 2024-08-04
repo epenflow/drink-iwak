@@ -5,7 +5,7 @@ import { OurStory } from '@/app/test/our-story';
 
 export default function Home() {
 	return (
-		<main className="overflow-x-hidden">
+		<main className="parent-container overflow-x-hidden bg-black">
 			<Hero />
 			<News />
 			<OurStory />

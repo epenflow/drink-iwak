@@ -34,6 +34,7 @@ export const Hero = () => {
 				yPercent: 0,
 			});
 	}, [containerRef]);
+
 	return (
 		<section
 			ref={containerRef}

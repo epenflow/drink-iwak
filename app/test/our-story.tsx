@@ -14,7 +14,7 @@ export const OurStory = () => {
 			scrollTrigger: {
 				pin: containerRef.current,
 				start: 'top top',
-				end: 'bottom+=300vh top',
+				end: 'bottom+=1000vh top',
 				scrub: 1,
 			},
 		});
@@ -22,6 +22,7 @@ export const OurStory = () => {
 			bottom: -200,
 			ease: 'sine.inOut',
 			autoAlpha: 0,
+			duration: 2.5,
 		});
 		const paragraphs: React.ElementRef<'p'>[] =
 			gsap.utils.toArray('.story-trigger');
@@ -40,8 +41,9 @@ export const OurStory = () => {
 				yPercent: 50,
 				autoAlpha: 0,
 				stagger: 0.5 * (index + 1),
-				duration: 0.5 * (index + 1),
+				duration: 1.5 * (index + 1),
 				ease: 'sine.in',
+				delay: 2.5,
 			});
 		});
 		textMarkers.forEach((marker, index) => {
