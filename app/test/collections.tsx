@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useMediaQuery } from '@uidotdev/usehooks';
 import Image from 'next/image';
 gsap.registerPlugin(ScrollTrigger);
 const Images = [
@@ -42,7 +41,6 @@ const Images = [
 ];
 export const Collections = () => {
 	const containerCollection = React.useRef<React.ElementRef<'section'>>(null);
-	const sm = useMediaQuery('(min-width: 640px)');
 	useGSAP(() => {
 		const elements: HTMLDivElement[] = gsap.utils.toArray(
 			'.collection-trigger',
