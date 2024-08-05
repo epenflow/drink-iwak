@@ -14,7 +14,7 @@ export const Hero = () => {
 			scrollTrigger: {
 				pin: containerRef.current,
 				start: 'top top',
-				end: 'bottom+=300vh top',
+				end: 'bottom top',
 				scrub: true,
 			},
 		});
@@ -22,13 +22,11 @@ export const Hero = () => {
 			autoAlpha: 0,
 			scale: 0.25,
 			text: '',
-			duration: 2000,
 			ease: 'sine.inOut',
 		}).to(videoRef.current, {
 			clipPath: 'inset(0% 0% 0% 0%)',
 			delay: 1.5,
-			duration: 4000,
-			ease: 'power4.inOut',
+			ease: 'power1.inOut',
 		});
 	}, [containerRef]);
 

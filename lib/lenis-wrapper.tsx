@@ -10,26 +10,19 @@ interface LenisWrapperProps {
 export function LenisWrapper({ children }: LenisWrapperProps) {
 	const scrollRef = React.useRef<Lenis>(null);
 	React.useLayoutEffect(() => {
-		const lenis = new Lenis({
-			duration: 5,
-			easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-			touchMultiplier: 2,
-			smoothWheel: true,
-			syncTouch: true,
-		});
-		function update(time: number) {
-			lenis.raf(time * 1000);
-		}
 		function initSmoothScrolling() {
-			lenis.on('scroll', () => ScrollTrigger.update);
-			gsap.ticker.add(update, false, true);
-			gsap.ticker.lagSmoothing(0);
+			const lenis = new Lenis({
+				smoothWheel: true,
+				lerp: 0.15,
+			});
+			lenis.on('scroll', () => ScrollTrigger.update());
+			const scrollFn = (time: number) => {
+				lenis.raf(time);
+				requestAnimationFrame(scrollFn);
+			};
+			requestAnimationFrame(scrollFn);
 		}
 		initSmoothScrolling();
-		return () => {
-			gsap.ticker.remove(update);
-			lenis.destroy();
-		};
 	}, []);
 	return children;
 }
