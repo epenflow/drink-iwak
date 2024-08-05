@@ -49,7 +49,6 @@ export const OurStory = () => {
 								trigger: paragraph,
 								start: 'top-=100% top',
 								end: 'top top',
-								markers: true,
 								scrub: 1,
 							},
 						});
