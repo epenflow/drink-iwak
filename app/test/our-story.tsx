@@ -22,41 +22,40 @@ export const OurStory = () => {
 			bottom: -200,
 			ease: 'sine.inOut',
 			autoAlpha: 0,
-			duration: 2.5,
+			duration: 3000,
 		});
 		const paragraphs: React.ElementRef<'p'>[] =
 			gsap.utils.toArray('.story-trigger');
 		const textMarkers: React.ElementRef<'span'>[] =
 			gsap.utils.toArray('.text-markers');
-		tl.from(
-			headingRef.current,
-			{
-				yPercent: 50,
-				autoAlpha: 0,
-			},
-			'+=2',
-		);
+		tl.from(headingRef.current, {
+			yPercent: 50,
+			autoAlpha: 0,
+			duration: 2000,
+			ease: 'sine.in',
+		});
 		paragraphs.forEach((paragraph, index) => {
 			tl.from(paragraph, {
 				yPercent: 50,
 				autoAlpha: 0,
-				stagger: 0.5 * (index + 1),
-				duration: 1.5 * (index + 1),
+				duration: 2000,
 				ease: 'sine.in',
-				delay: 2.5,
-			});
-		});
-		textMarkers.forEach((marker, index) => {
-			tl.to(
-				marker,
-				{
-					backgroundSize: '100%',
-					ease: 'sine.in',
-					duration: 0,
-					stagger: 0.5 * (index + 1),
+				onComplete: () => {
+					textMarkers.forEach((marker, index) => {
+						gsap.to(marker, {
+							backgroundSize: '100%',
+							ease: 'power4.out',
+							scrollTrigger: {
+								trigger: paragraph,
+								start: 'top-=100% top',
+								end: 'top top',
+								markers: true,
+								scrub: 1,
+							},
+						});
+					});
 				},
-				`+=${index + 1}`,
-			);
+			});
 		});
 	}, [containerRef]);
 	return (

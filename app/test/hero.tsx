@@ -10,39 +10,34 @@ export const Hero = () => {
 	const videoRef = React.useRef<React.ElementRef<'video'>>(null);
 	const headingRef = React.useRef<React.ElementRef<'h1'>>(null);
 	useGSAP(() => {
-		gsap.from(headingRef.current, {
-			text: '',
-			duration: 3.5,
-			delay: 0.5,
-			ease: 'power1.in',
-		});
-		const scrollTl = gsap.timeline({
+		const tl = gsap.timeline({
 			scrollTrigger: {
 				pin: containerRef.current,
 				start: 'top top',
-				end: 'bottom+=500vh top',
-				scrub: 1,
+				end: 'bottom+=300vh top',
+				scrub: true,
 			},
 		});
-		scrollTl
-			.to(headingRef.current, {
-				yPercent: -200,
-				autoAlpha: 0,
-			})
-			.to(videoRef.current, {
-				scale: 0.75,
-				yPercent: 0,
-			});
+		tl.from(headingRef.current, {
+			autoAlpha: 0,
+			scale: 0.25,
+			text: '',
+			duration: 2000,
+			ease: 'sine.inOut',
+		}).to(videoRef.current, {
+			clipPath: 'inset(0% 0% 0% 0%)',
+			delay: 1.5,
+			duration: 4000,
+			ease: 'power4.inOut',
+		});
 	}, [containerRef]);
 
 	return (
 		<section
 			ref={containerRef}
-			style={
-				{
-					// backgroundImage: `url(./bg-horizontal.png)`,
-				}
-			}
+			style={{
+				backgroundImage: `url(./bg-horizontal.png)`,
+			}}
 			className="w-screen h-screen flex items-center bg-cover bg-no-repeat bg-center justify-center overflow-hidden bg-black">
 			<h1
 				ref={headingRef}
@@ -58,7 +53,7 @@ export const Hero = () => {
 				loop
 				muted
 				style={{
-					clipPath: 'circle(100%)',
+					clipPath: 'inset(100% 0% 0% 0%)',
 				}}
 				className="w-full h-full absolute top-0 object-cover left-1/2 -translate-x-1/2">
 				<source src="./Iwak Arumery Homepage.mp4" />
